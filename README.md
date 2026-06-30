@@ -1,16 +1,53 @@
-# React + Vite
+# dota-chatbot-app
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Frontend do [Dota 2 AI Chatbot](https://github.com/Diegobraun/dota-chatbot), construído com **React + Vite**. Interface de chat estilo terminal com tema Dota 2.
 
-Currently, two official plugins are available:
+## Pré-requisitos
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Node.js 18+
+- Backend [`dota-chatbot`](https://github.com/Diegobraun/dota-chatbot) rodando em `localhost:8080`
 
-## React Compiler
+## Instalação
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```bash
+npm install
+```
 
-## Expanding the Oxlint configuration
+## Rodando em desenvolvimento
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+```bash
+npm run dev
+```
+
+Acesse `http://localhost:5173`. As requisições para `/dota` são redirecionadas automaticamente para `http://localhost:8080` via proxy do Vite — sem necessidade de configurar CORS.
+
+## Build para produção
+
+```bash
+npm run build
+```
+
+Os arquivos estáticos ficam em `dist/`. Para servir localmente:
+
+```bash
+npm run preview
+```
+
+## Rodando o projeto completo
+
+É necessário ter o backend rodando antes de abrir o frontend.
+
+**Terminal 1 — backend:**
+```bash
+# Requer Java 21+ e Ollama rodando com llama3.2:latest e nomic-embed-text
+cd ../dota-chatbot
+./mvnw spring-boot:run
+```
+
+**Terminal 2 — frontend:**
+```bash
+cd ../dota-chatbot-app
+npm run dev
+```
+
+Acesse `http://localhost:5173`.
